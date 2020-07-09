@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DondeLa_tuty.Models.Category>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+<h2>Categorias</h2>
+<p>
+    Seleccionar:
+</p>
+<ul>
+    @foreach (var category in Model)
+    {
+        <li>@Html.ActionLink(category.Name,"Browse", new { category = category.Name})</li>
+    }
+</ul>
+
