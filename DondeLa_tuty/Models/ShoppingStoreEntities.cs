@@ -10,5 +10,6 @@ namespace DondeLa_tuty.Models
 	{
 		public DbSet<Item> Items {get; set;}
 		public DbSet<Category> Categories { get; set; }
+		public DbSet<Producer> Producers { get; set; }
 	}
 }

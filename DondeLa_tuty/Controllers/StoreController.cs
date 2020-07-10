@@ -9,26 +9,33 @@ namespace DondeLa_tuty.Controllers
 {
     public class StoreController : Controller
     {
-        // GET: Store
+		ShoppingStoreEntities storeDB = new ShoppingStoreEntities();
+		//aqui muestra las categorias en el index
+        // GET: Store 
         public ActionResult Index()
         {
-            var category = new List<Category>
-            {
-                new Category {Nombre = "Frutas"},
-                new Category {Nombre = "Verduras"}
-            };
-            return View(category);
-        }
 
+			var categories = storeDB.Categories.ToList();
+
+			return View(categories);
+			
+        }
+		
         public ActionResult Browse(string category)
         {
-            var categoryModel = new Category { Nombre = category };
-           return View(categoryModel);
-        }
+
+			var categoryModel = storeDB.Categories.Include("Items")
+			.Single(c => c.Nombre == category);
+			return View(categoryModel);
+			
+		}
+		//aqui busca las categorias
         public ActionResult Details(int id)
         {
-            var Item = new Item { Titulo = "item"+ id};
-            return View(Item);
-        }
+			
+			var Item = storeDB.Items.Find(id);
+			return View(Item);
+
+		}
     }
 }

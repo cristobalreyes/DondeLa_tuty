@@ -4,5 +4,13 @@
     ViewBag.Title = "Browse";
 }
 
-<h2>Categoria:@Model.Name</h2>
+<h2>Categoria:@Model.Nombre</h2>
+<ul>
+	@foreach(var item in Model.Items)
+	{
+		<li>
+			@Html.ActionLink(item.Titulo, "Details", new { id=item.ItemId})
+		</li>
+	}
+</ul>
 
