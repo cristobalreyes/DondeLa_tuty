@@ -14,15 +14,15 @@ namespace DondeLa_tuty.Controllers
         {
             var category = new List<Category>
             {
-                new Category {Name = "Frutas"},
-                new Category {Name = "Verduras"}
+                new Category {Nombre = "Frutas"},
+                new Category {Nombre = "Verduras"}
             };
             return View(category);
         }
 
         public ActionResult Browse(string category)
         {
-            var categoryModel = new Category { Name = category };
+            var categoryModel = new Category { Nombre = category };
            return View(categoryModel);
         }
         public ActionResult Details(int id)

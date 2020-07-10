@@ -5,8 +5,12 @@ using System.Web;
 
 namespace DondeLa_tuty.Models
 {
-    public class Category
+	//clase categoria
+    public partial class Category
     {
-        public string Name { get; set; }
-    }
+		public int CategoryId { get; set; }
+		public string Nombre { get; set; }
+		public string Descripcion { get; set; }
+		public List<Item> Items { get; set; }
+	}
 }
