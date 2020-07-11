@@ -10,6 +10,7 @@ using DondeLa_tuty.Models;
 
 namespace DondeLa_tuty.Controllers
 {
+    [Authorize(Users ="Ali@gmail.com")]
     public class StoreManagerController : Controller
     {
         private ShoppingStoreEntities db = new ShoppingStoreEntities();

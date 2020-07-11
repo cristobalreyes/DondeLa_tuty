@@ -24,8 +24,7 @@ namespace DondeLa_tuty.Controllers
         public ActionResult Browse(string category)
         {
 
-			var categoryModel = storeDB.Categories.Include("Items")
-			.Single(c => c.Nombre == category);
+			var categoryModel = storeDB.Categories.Include("Items").Single(c => c.Nombre == category);
 			return View(categoryModel);
 			
 		}
