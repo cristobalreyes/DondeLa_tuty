@@ -9,7 +9,11 @@ namespace DondeLa_tuty.Controllers
 {
     public class StoreController : Controller
     {
+
 		ShoppingStoreEntities storeDB = new ShoppingStoreEntities();
+
+     
+
 		//aqui muestra las categorias en el index
         // GET: Store 
         public ActionResult Index()

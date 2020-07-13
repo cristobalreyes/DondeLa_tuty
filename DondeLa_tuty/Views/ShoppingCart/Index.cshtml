@@ -1,9 +1,10 @@
 ﻿@model DondeLa_tuty.ViewModels.ShoppingCartViewModel
+
 @{
     ViewBag.Title = "Shopping Cart";
 }
-<script src="/Scripts/jquery-1.4.4.min.js"
-        type="text/javascript"></script>
+
+<script src="/Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         // Document.ready -> vincular para quitar controlador de eventos
@@ -30,25 +31,25 @@
     });
 </script>
 <h3>
-    <em>Review</em> your cart:
+    <em>Revision</em> de Carro:
 </h3>
-<p class="button">
+<p class="btn btn-success">
     @Html.ActionLink("Checkout>> ", "AddressAndPayment", "Checkout")
 </p>
 <div id="update-message">
 </div>
-<table>
+<table class="table table-bordered">
     <tr>
         <th>
-            Item Name
+            Nombre Producto
         </th>
         <th>
-            Price (each)
+            Precio Kilo
         </th>
         <th>
-            Quantity
+            Cantidad
         </th>
-        <th></th>
+        <th>Acciones</th>
     </tr>
     @foreach (var item in Model.CartItems)
     {
@@ -66,8 +67,7 @@
             <td>
                 <a href="#" class="RemoveLink"
                    data-id="@item.RecordId">
-                    Remove
-                    from cart
+                   Remover del Carro
                 </a>
             </td>
         </tr>

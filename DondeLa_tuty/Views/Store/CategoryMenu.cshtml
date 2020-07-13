@@ -1,18 +1,19 @@
 ﻿@model IEnumerable<DondeLa_tuty.Models.Category>
 
-@*<ul>
+
     @foreach (var category in Model)
         {
 
-            <p class="btn">
-                @Html.ActionLink(category.Name, "Browse", "Store", new { Category = category.Name }, null)
-
-                </p>
+            
+<ul>
+    <li><button type="button" class="btn btn-light">@Html.ActionLink(category.Nombre, "Browse", "Store", new { Category = category.Nombre }, null)</button></li>
+</ul>
+                
 
          }
-</ul>*@
 
-<p>
+
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -42,4 +43,4 @@
     </tr>
 }
 
-</table>
+</table>*@

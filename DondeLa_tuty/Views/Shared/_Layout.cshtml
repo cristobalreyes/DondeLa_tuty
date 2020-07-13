@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - Donde La Tuty</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,8 +38,9 @@
             </div>
         </div>
     </div>
-    <li>@{Html.RenderAction("Categorymenu", "Store");}</li>
-
+    <br />
+    @{Html.RenderAction("CategoryMenu", "Store");}
+        
 
     <div class="container body-content">
         @RenderBody()
@@ -52,5 +53,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+ 
 </body>
 </html>
