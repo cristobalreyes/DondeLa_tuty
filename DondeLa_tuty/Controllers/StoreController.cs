@@ -20,7 +20,14 @@ namespace DondeLa_tuty.Controllers
 			return View(categories);
 			
         }
-		
+        [ChildActionOnly]
+        public ActionResult CategoryMenu()
+        {
+            var categories = storeDB.Categories.ToList();
+            return PartialView(categories);
+
+        }
+
         public ActionResult Browse(string category)
         {
 

@@ -1,4 +1,5 @@
-﻿using IdentitySample.Models;
+﻿using DondeLa_tuty.Models;
+using IdentitySample.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -14,6 +15,15 @@ namespace IdentitySample.Controllers
     {
         public AccountController()
         {
+        }
+
+        private void MigrateShoppingCart(string Email)
+        {
+
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.MigrateCart(Email);
+            Session[ShoppingCart.CartSessionKey] = Email;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -74,6 +84,7 @@ namespace IdentitySample.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    MigrateShoppingCart(model.Email);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -141,7 +152,7 @@ namespace IdentitySample.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/Register registrar
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -154,6 +165,7 @@ namespace IdentitySample.Controllers
                 if (result.Succeeded)
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    MigrateShoppingCart(model.Email);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;

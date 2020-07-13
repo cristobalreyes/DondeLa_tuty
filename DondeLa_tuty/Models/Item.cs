@@ -29,5 +29,6 @@ namespace DondeLa_tuty.Models
 		public string ItemArtUrl { get; set; }
 		public virtual Category Category { get; set; }
 		public virtual Producer Producer { get; set; }
+        public virtual List<OrderDetail> OrderDetails { get; set; }
     }    
 }

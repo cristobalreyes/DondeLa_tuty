@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DondeLa_tuty.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,18 +18,21 @@ namespace DondeLa_tuty.Models
             cart.ShoppingCartId = cart.GetCartId(context);
             return cart;
         }
-        //METODO QUE AYUDA A SIMPLIFICAR LA LLAMADA A SHOPPINGCART
+        // Helper method to simplify shopping cart calls
         public static ShoppingCart GetCart(Controller controller)
         {
             return GetCart(controller.HttpContext);
         }
         public void AddToCart(Item item)
         {
+
             var cartItem = storeDB.Carts.SingleOrDefault(
                 c => c.CartId == ShoppingCartId
                 && c.ItemId == item.ItemId);
+
             if (cartItem == null)
             {
+
                 cartItem = new Cart
                 {
                     ItemId = item.ItemId,
@@ -40,15 +44,19 @@ namespace DondeLa_tuty.Models
             }
             else
             {
+
                 cartItem.Count++;
             }
+
             storeDB.SaveChanges();
         }
         public int RemoveFromCart(int id)
         {
+
             var cartItem = storeDB.Carts.Single(
                 cart => cart.CartId == ShoppingCartId
                 && cart.RecordId == id);
+
             int itemCount = 0;
 
             if (cartItem != null)
@@ -62,10 +70,12 @@ namespace DondeLa_tuty.Models
                 {
                     storeDB.Carts.Remove(cartItem);
                 }
+
                 storeDB.SaveChanges();
             }
             return itemCount;
         }
+
         public void EmptyCart()
         {
             var cartItems = storeDB.Carts.Where(
@@ -75,6 +85,7 @@ namespace DondeLa_tuty.Models
             {
                 storeDB.Carts.Remove(cartItem);
             }
+
             storeDB.SaveChanges();
         }
         public List<Cart> GetCartItems()
@@ -84,23 +95,31 @@ namespace DondeLa_tuty.Models
         }
         public int GetCount()
         {
+
             int? count = (from cartItems in storeDB.Carts
                           where cartItems.CartId == ShoppingCartId
                           select (int?)cartItems.Count).Sum();
+
             return count ?? 0;
         }
+
         public decimal GetTotal()
         {
+
             decimal? total = (from cartItems in storeDB.Carts
                               where cartItems.CartId == ShoppingCartId
                               select (int?)cartItems.Count *
                               cartItems.Item.Precio).Sum();
+
             return total ?? decimal.Zero;
         }
+
         public int CreateOrder(Order order)
         {
             decimal orderTotal = 0;
+
             var cartItems = GetCartItems();
+
             foreach (var item in cartItems)
             {
                 var orderDetail = new OrderDetail
@@ -110,14 +129,23 @@ namespace DondeLa_tuty.Models
                     UnitPrice = item.Item.Precio,
                     Quantity = item.Count
                 };
+
                 orderTotal += (item.Count * item.Item.Precio);
+
                 storeDB.OrderDetails.Add(orderDetail);
+
             }
+
             order.Total = orderTotal;
+
+
             storeDB.SaveChanges();
+
             EmptyCart();
+
             return order.OrderId;
         }
+
         public string GetCartId(HttpContextBase context)
         {
             if (context.Session[CartSessionKey] == null)
@@ -129,21 +157,26 @@ namespace DondeLa_tuty.Models
                 }
                 else
                 {
+
                     Guid tempCartId = Guid.NewGuid();
+
                     context.Session[CartSessionKey] = tempCartId.ToString();
                 }
             }
             return context.Session[CartSessionKey].ToString();
         }
-        public void MigrateCart(string username)
+        public void MigrateCart(string Email)
         {
             var shoppingCart = storeDB.Carts.Where(
                 c => c.CartId == ShoppingCartId);
+
             foreach (Cart item in shoppingCart)
             {
-                item.CartId = username;
+                item.CartId = Email;
             }
             storeDB.SaveChanges();
         }
+
+
     }
 }
