@@ -21,11 +21,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact-", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact-", "Home")</li>*@
+                    
+                    @*//Redirecciona al display de los Productos
+                    //visible para cliente*@
                     <li>@Html.ActionLink("Productos", "Index", "Store")</li>
+
+                    @*//Redirecciona a la vista de administrador en donde puede gestionr los productos
+                    //solo para admin*@
                     <li>@Html.ActionLink("StoreManager", "Index", "StoreManager")</li>
+
+                    @*Redirreccion a Carro con los productos seleccionados*@
                     <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
