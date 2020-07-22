@@ -49,7 +49,7 @@ namespace DondeLa_tuty.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemId,CategoriaId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
+        public ActionResult Create([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace DondeLa_tuty.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemId,CategoriaId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
+        public ActionResult Edit([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
         {
             if (ModelState.IsValid)
             {

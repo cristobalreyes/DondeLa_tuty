@@ -7,15 +7,22 @@ using System.Web.Mvc;
 using System.Net;
 using System.Data.Entity;
 
+
 namespace DondeLa_tuty.Controllers
 {
+    [Authorize(Users = "Ali@gmail.com")]
     public class AdminController : Controller
     {
+
         ShoppingStoreEntities storeDB = new ShoppingStoreEntities();
         // GET: Admin
+       
+     
+        
         public ActionResult Dashboard()
         {
-            return View();
+            var items = storeDB.Items.Include(i => i.Producer);
+            return View(items.ToList());
         }
 
         public ActionResult Categorias()
@@ -42,7 +49,7 @@ namespace DondeLa_tuty.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProduct([Bind(Include = "ItemId,CategoriaId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
+        public ActionResult CreateProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +84,7 @@ namespace DondeLa_tuty.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProduct([Bind(Include = "ItemId,CategoriaId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
+        public ActionResult EditProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
         {
             if (ModelState.IsValid)
             {
