@@ -6,36 +6,27 @@
 }
 <div class="container-fluid">
     <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">Categorias</li>
-    </ol>
+	<div class="card-header">
+		<i class="fas fa-table"></i>
+		Categorías
+		<a href="../Admin/CreateCategory" class="btn btn-info pull-right fa fa-plus">Agregar nueva categoría</a>
+	</div>
     <!-- DataTables Example -->
     <div class="card mb-3">
-        <div class="card-header">
-            <i class="fas fa-table"></i>
-            Detalle Categorias
-        </div>
+        
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre Categoria</th>
-                            
+						<tr>
+							<th>ID</th>
+							<th>Nombre Categoria</th>
+							<th>Accion</th>
 
-                        </tr>
+
+						</tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre Categoria</th>
-                            
-                        </tr>
-                    </tfoot>
                     <tbody>
                         @foreach (var item in Model)
                         {
@@ -43,7 +34,7 @@
                             <tr>
                                 <td>@item.CategoryId</td>
                                 <td>@item.Nombre</td>
-                               
+								<td>@Html.ActionLink("Edit", "EditProduct", new { item = item.CategoryId })</td>
 
                             </tr>
                         }

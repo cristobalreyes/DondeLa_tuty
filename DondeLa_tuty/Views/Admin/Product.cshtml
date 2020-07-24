@@ -5,46 +5,41 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="card mb-3">
-    <div class="card-header">
-        <i class="fas fa-table"></i>
-        Productos
-        <a href="../Admin/CreateProduct" class="btn btn-info pull-right fa fa-plus">Agregar Producto Nuevo</a>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre Producto</th>
-                        <th>Accion</th>
+<div class="container-fluid">
+	<div class="card mb-3">
+		<div class="card-header">
+			<i class="fas fa-table"></i>
+			Productos
+			<a href="../Admin/CreateProduct" class="btn btn-info pull-right fa fa-plus">Agregar Producto Nuevo</a>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre Producto</th>
+							<th>Accion</th>
 
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre Producto</th>
-                        <th>Accion</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        int count = 1;
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							int count = 1;
 
-                        <tr>
-                            <td>@count</td>
-                            <td>@item.Titulo</td>
-                            <td> @Html.ActionLink("Edit", "EditProduct", new { item = item.ItemId })</td>
-                        </tr>
-                        count++;
-                    }
+							<tr>
+								<td>@count</td>
+								<td>@item.Titulo</td>
+								<td> @Html.ActionLink("Editar Producto", "EditProduct", new { id = item.ItemId })</td>
+							</tr>
+							count++;
+						}
 
-                </tbody>
-            </table>
-        </div>
+					</tbody>
+				</table>
+			</div>
 
-    </div>
+		</div>
+	</div>
 </div>
