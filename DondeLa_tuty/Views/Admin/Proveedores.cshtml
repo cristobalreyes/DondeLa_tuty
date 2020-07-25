@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DondeLa_tuty.Models.Producer>
+
+@{
+    ViewBag.Title = "Proveedores";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Productos
+            <a href="../Admin/CreateProveedor" class="btn btn-info pull-right fa fa-plus">Agregar Proveedor Nuevo</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Proveedor</th>
+                            <th>Accion</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            int count = 1;
+
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Nombre</td>
+                                <td> @Html.ActionLink("Editar Proveedor", "EditProveedor", new { id = item.ProducerId })</td>
+                            </tr>
+                            count++;
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

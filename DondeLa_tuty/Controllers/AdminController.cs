@@ -37,6 +37,12 @@ namespace DondeLa_tuty.Controllers
             return PartialView(productos);
         }
 
+        public ActionResult Proveedores()
+        {
+            var proveedores = storeDB.Producers.ToList();
+            return PartialView(proveedores);
+        }
+
         // GET: StoreManager/Create
         public ActionResult CreateProduct()
         {
