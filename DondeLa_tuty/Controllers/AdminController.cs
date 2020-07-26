@@ -96,10 +96,37 @@ namespace DondeLa_tuty.Controllers
             {
                 storeDB.Entry(item).State = EntityState.Modified;
                 storeDB.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Product");
             }
             ViewBag.ProducerID = new SelectList(storeDB.Producers, "ProducerId", "Nombre", item.ProducerID);
             return View(item);
+        }
+
+
+        // GET: StoreManager/Delete/5
+        public ActionResult DeleteProduct(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Item item = storeDB.Items.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+
+        // POST: StoreManager/Delete/5
+        [HttpPost, ActionName("DeleteProduct")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Item item = storeDB.Items.Find(id);
+            storeDB.Items.Remove(item);
+            storeDB.SaveChanges();
+            return RedirectToAction("Product");
         }
     }
 }
