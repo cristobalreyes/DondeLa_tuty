@@ -1776,6 +1776,12 @@
     <Content Include="Views\Admin\DeleteProduct.cshtml" />
     <Content Include="Views\Admin\CreateProduct.cshtml" />
     <Content Include="Views\Admin\EditProduct.cshtml" />
+    <Content Include="Views\Admin\CreateCategory.cshtml" />
+    <Content Include="Views\Admin\EditCategory.cshtml" />
+    <Content Include="Views\Admin\DeleteCategory.cshtml" />
+    <Content Include="Views\Admin\CreateProveedores.cshtml" />
+    <Content Include="Views\Admin\DeleteProveedores.cshtml" />
+    <Content Include="Views\Admin\EditProveedores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -132,5 +132,175 @@ namespace DondeLa_tuty.Controllers
             storeDB.SaveChanges();
             return RedirectToAction("Product");
         }
+        /// 
+        /// <summary>
+        /// CATEGORIAS CONTROLADORES
+        /// </summary>
+        /// <returns></returns>
+        // GET: StoreManager/Create
+        public ActionResult CreateCategory()
+        { 
+
+            return View();
+        }
+
+        // POST: StoreManager/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCategory([Bind(Include = "CategoryId,Nombre,Descripcion")] Category Categories)
+        {
+            if (ModelState.IsValid)
+            {
+                storeDB.Categories.Add(Categories);
+                storeDB.SaveChanges();
+                return RedirectToAction("Categorias");
+            }
+       
+            return View(Categories);
+        }
+
+        // GET: StoreManager/Edit/5
+        public ActionResult EditCategory(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category Categories = storeDB.Categories.Find(id);
+            if (Categories == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Categories);
+        }
+
+        // POST: StoreManager/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCategory([Bind(Include = "CategoryId,Nombre,Descripcion")] Category Categories)
+        {
+            if (ModelState.IsValid)
+            {
+                storeDB.Entry(Categories).State = EntityState.Modified;
+                storeDB.SaveChanges();
+                return RedirectToAction("Categorias");
+            }
+  
+            return View(Categories);
+        }
+
+        // GET: StoreManager/Delete/5
+        public ActionResult DeleteCategory(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category Categories = storeDB.Categories.Find(id);
+            if (Categories == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Categories);
+        }
+
+        // POST: StoreManager/Delete/5
+        [HttpPost, ActionName("DeleteCategory")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCategory(int id)
+        {
+            Category Categories = storeDB.Categories.Find(id);
+            storeDB.Categories.Remove(Categories);
+            storeDB.SaveChanges();
+            return RedirectToAction("Categorias");
+        }
+        /// 
+        /// <summary>
+        /// C CONTROLADORES
+        /// </summary>
+        /// <returns></returns>
+        // GET: StoreManager/Create
+        public ActionResult CreateProveedores()
+        {
+
+            return View();
+        }
+
+        // POST: StoreManager/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateProveedores([Bind(Include = "CategoryId,Nombre,Descripcion")] Producer Proveedor)
+        {
+            if (ModelState.IsValid)
+            {
+                storeDB.Producers.Add(Proveedor);
+                storeDB.SaveChanges();
+                return RedirectToAction("Proveedores");
+            }
+
+            return View(Proveedor);
+        }
+        // GET: StoreManager/Edit/5
+        public ActionResult EditProveedores(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Producer Proveedor = storeDB.Producers.Find(id);
+            if (Proveedor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Proveedor);
+        }
+
+        // POST: StoreManager/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProveedores([Bind(Include = "ProducerId,Nombre")] Producer Proveedor)
+        {
+            if (ModelState.IsValid)
+            {
+                storeDB.Entry(Proveedor).State = EntityState.Modified;
+                storeDB.SaveChanges();
+                return RedirectToAction("Proveedores");
+            }
+
+            return View(Proveedor);
+        }
+        // GET: StoreManager/Delete/5
+        public ActionResult DeleteProveedores(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Producer Proveedor = storeDB.Producers.Find(id);
+            if (Proveedor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Proveedor);
+        }
+
+        // POST: StoreManager/Delete/5
+        [HttpPost, ActionName("DeleteProveedores")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteProveedores(int id)
+        {
+            Producer Proveedor = storeDB.Producers.Find(id);
+            storeDB.Producers.Remove(Proveedor);
+            storeDB.SaveChanges();
+            return RedirectToAction("Proveedores");
+        }
     }
 }

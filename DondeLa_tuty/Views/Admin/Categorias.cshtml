@@ -31,12 +31,12 @@
                         @foreach (var item in Model)
                         {
 
-                            <tr>
-                                <td>@item.CategoryId</td>
-                                <td>@item.Nombre</td>
-								<td>@Html.ActionLink("Edit", "EditProduct", new { item = item.CategoryId })</td>
-
-                            </tr>
+                        <tr>
+                            <td>@item.CategoryId</td>
+                            <td>@item.Nombre</td>
+                            <td> @Html.ActionLink("Editar Categoria", "EditCategory", new { id = item.CategoryId })</td>
+                            <td> @Html.ActionLink("Eliminar Categoria", "DeleteCategory", new { id = item.CategoryId })</td>
+                        </tr>
                         }
 
                     </tbody>
