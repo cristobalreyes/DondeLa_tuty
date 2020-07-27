@@ -46,7 +46,9 @@ namespace DondeLa_tuty.Controllers
         // GET: StoreManager/Create
         public ActionResult CreateProduct()
         {
+            ViewBag.CategoryId = new SelectList(storeDB.Categories, "CategoryId", "Nombre");
             ViewBag.ProducerID = new SelectList(storeDB.Producers, "ProducerId", "Nombre");
+            
             return View();
         }
 
@@ -61,9 +63,9 @@ namespace DondeLa_tuty.Controllers
             {
                 storeDB.Items.Add(item);
                 storeDB.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Product");
             }
-
+            ViewBag.CategoryId = new SelectList(storeDB.Categories, "CategoryId", "Nombre", item.CategoryId);
             ViewBag.ProducerID = new SelectList(storeDB.Producers, "ProducerId", "Nombre", item.ProducerID);
             return View(item);
         }
@@ -81,6 +83,7 @@ namespace DondeLa_tuty.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(storeDB.Categories, "CategoryId", "Nombre", item.CategoryId);
             ViewBag.ProducerID = new SelectList(storeDB.Producers, "ProducerId", "Nombre", item.ProducerID);
             return View(item);
         }
@@ -98,6 +101,7 @@ namespace DondeLa_tuty.Controllers
                 storeDB.SaveChanges();
                 return RedirectToAction("Product");
             }
+            ViewBag.CategoryId = new SelectList(storeDB.Categories, "CategoryId", "Nombre", item.CategoryId);
             ViewBag.ProducerID = new SelectList(storeDB.Producers, "ProducerId", "Nombre", item.ProducerID);
             return View(item);
         }

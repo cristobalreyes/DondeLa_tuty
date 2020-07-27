@@ -1761,7 +1761,6 @@
     <Content Include="Views\StoreManager\Create.cshtml" />
     <Content Include="Views\StoreManager\Delete.cshtml" />
     <Content Include="Views\StoreManager\Details.cshtml" />
-    <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\StoreManager\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
@@ -1772,11 +1771,11 @@
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Admin\Categorias.cshtml" />
     <Content Include="Views\Admin\Product.cshtml" />
-    <Content Include="Views\Admin\CreateProduct.cshtml" />
-    <Content Include="Views\Admin\EditProduct.cshtml" />
     <Content Include="Views\StoreManager\Layout.cshtml" />
     <Content Include="Views\Admin\Proveedores.cshtml" />
     <Content Include="Views\Admin\DeleteProduct.cshtml" />
+    <Content Include="Views\Admin\CreateProduct.cshtml" />
+    <Content Include="Views\Admin\EditProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
