@@ -12,6 +12,7 @@
             Productos
             <a href="../Admin/CreateProveedores" class="btn btn-info pull-right fa fa-plus">Agregar Proveedor Nuevo</a>
         </div>
+        
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -28,12 +29,13 @@
                         {
                             int count = 1;
 
-                        <tr>
-                            <td>@count</td>
-                            <td>@item.Nombre</td>
-                            <td> @Html.ActionLink("Editar Proveedor", "EditProveedores", new { id = item.ProducerId })</td>
-                            <td> @Html.ActionLink("Eliminar Proveedor", "DeleteProveedores", new { id = item.ProducerId })</td>
-                        </tr>
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Nombre</td>
+                               
+                                <td> @Html.ActionLink("Editar Proveedor", "EditProveedores", new { id = item.ProducerId })</td>
+                                <td> @Html.ActionLink("Eliminar Proveedor", "DeleteProveedores", new { id = item.ProducerId })</td>
+                            </tr>
                             count++;
                         }
 
