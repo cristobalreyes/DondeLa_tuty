@@ -41,11 +41,11 @@
 			</dd>
 
 			<dt>
-				@Html.DisplayNameFor(model => model.ItemArtUrl)
+				@Html.DisplayNameFor(model => model.imagenProducto)
 			</dt>
 
 			<dd>
-				@Html.DisplayFor(model => model.ItemArtUrl)
+				<img width="50" height="50" src="@Url.Action("convertirImagen", "Admin", new {ItemId = Model.ItemId})" />
 			</dd>
 
 		</dl>

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net;
 using System.Data.Entity;
-
+using System.IO;
 
 namespace DondeLa_tuty.Controllers
 {
@@ -42,7 +42,12 @@ namespace DondeLa_tuty.Controllers
             var proveedores = storeDB.Producers.ToList();
             return PartialView(proveedores);
         }
+        public ActionResult convertirImagen(int ItemId)
+        {
+            Item imagenProducto = storeDB.Items.Where(x => x.ItemId == ItemId).FirstOrDefault();
 
+            return File(imagenProducto.imagenProducto, "image/jpeg");
+        }
         // GET: StoreManager/Create
         public ActionResult CreateProduct()
         {
@@ -57,8 +62,19 @@ namespace DondeLa_tuty.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
+        public ActionResult CreateProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio")] Item item, HttpPostedFileBase imagenProducto)
         {
+            if (imagenProducto != null && imagenProducto.ContentLength > 0)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(imagenProducto.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(imagenProducto.ContentLength);
+                }
+                //setear la imagen a la entidad que se creara
+
+                item.imagenProducto = imageData;
+            }
             if (ModelState.IsValid)
             {
                 storeDB.Items.Add(item);
@@ -93,8 +109,18 @@ namespace DondeLa_tuty.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio,ItemArtUrl")] Item item)
+        public ActionResult EditProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio")] Item item, HttpPostedFileBase imagenProducto)
         {
+            if (imagenProducto != null && imagenProducto.ContentLength > 0)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(imagenProducto.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(imagenProducto.ContentLength);
+                }
+                //setear la imagen a la entidad que se creara
+                item.imagenProducto = imageData;
+            }
             if (ModelState.IsValid)
             {
                 storeDB.Entry(item).State = EntityState.Modified;

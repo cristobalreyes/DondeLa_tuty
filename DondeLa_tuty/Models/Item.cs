@@ -24,10 +24,9 @@ namespace DondeLa_tuty.Models
         [Required(ErrorMessage = "Se requiere el precio")]
         [Range(500,5000,ErrorMessage = "El debe estar entre 500 y 5000")]
         public int Precio { get; set; }
-        [DisplayName("Item art url")]
-        [StringLength(1024)]
-		public string ItemArtUrl { get; set; }
-		public virtual Category Category { get; set; }
+        [Display(Name = "Imagen de Producto"), DataType(DataType.Upload)]
+        public byte[] imagenProducto { get; set; }
+        public virtual Category Category { get; set; }
 		public virtual Producer Producer { get; set; }
         public virtual List<OrderDetail> OrderDetails { get; set; }
     }    
