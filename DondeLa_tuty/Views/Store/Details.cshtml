@@ -7,7 +7,7 @@
 <h2>Item :@Model.Titulo</h2>
 <p>
     <img alt="@Model.Titulo"
-         src="@Model.ItemArtUrl" />
+         width="50" height="50" src="@Url.Action("convertirImagen", "Admin", new {ItemId = Model.ItemId})" />
 </p>
 <div id="item-details">
     <p>
@@ -24,7 +24,7 @@
 Model.Precio)
     </p>
     <p class="button1">
-        @Html.ActionLink("Add to cart", "AddToCart",
+        @Html.ActionLink("Agregar al carro", "AddToCart",
         "ShoppingCart", new { id = Model.ItemId }, "")
     </p>
     <div class="fb-comments" data-width="230" data-numposts="5"></div>

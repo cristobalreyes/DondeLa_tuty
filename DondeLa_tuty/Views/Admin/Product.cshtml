@@ -30,9 +30,9 @@
 							int count = 1;
 
                         <tr>
-                            <td>@count</td>
+                            <td>@item.ItemId</td>
                             <td>@item.Titulo</td>
-                            <td><img width="50" height="50" src="@Url.Action("convertirImagen", "Admin", new {ItemId = item.ItemId})" /></td>
+                            <td><center><img width="50" height="50" src="@Url.Action("convertirImagen", "Admin", new {ItemId = item.ItemId})" /></center></td>
                             <td> @Html.ActionLink("Editar Producto", "EditProduct", new { id = item.ItemId })</td>
                             <td> @Html.ActionLink("Eliminar Producto", "DeleteProduct", new { id = item.ItemId })</td>
                         </tr>
