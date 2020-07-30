@@ -101,7 +101,8 @@ namespace DondeLa_tuty.Controllers
             }
             ViewBag.CategoryId = new SelectList(storeDB.Categories, "CategoryId", "Nombre", item.CategoryId);
             ViewBag.ProducerID = new SelectList(storeDB.Producers, "ProducerId", "Nombre", item.ProducerID);
-            return View(item);
+			ViewBag.ItemId = new SelectList(storeDB.Items, "ItemId", "Nombre", item.ItemId);
+			return View(item);
         }
 
         // POST: StoreManager/Edit/5
@@ -109,7 +110,7 @@ namespace DondeLa_tuty.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio")] Item item, HttpPostedFileBase imagenProducto)
+        public ActionResult EditProduct([Bind(Include = "ItemId,CategoryId,ProducerID,Titulo,Precio,")] Item item, HttpPostedFileBase imagenProducto)
         {
             if (imagenProducto != null && imagenProducto.ContentLength > 0)
             {
@@ -129,7 +130,8 @@ namespace DondeLa_tuty.Controllers
             }
             ViewBag.CategoryId = new SelectList(storeDB.Categories, "CategoryId", "Nombre", item.CategoryId);
             ViewBag.ProducerID = new SelectList(storeDB.Producers, "ProducerId", "Nombre", item.ProducerID);
-            return View(item);
+			ViewBag.ItemId = new SelectList(storeDB.Items, "ItemId", "Nombre", item.ItemId);
+			return View(item);
         }
 
 
